@@ -18,7 +18,7 @@
         <h1>Aprende Inglés</h1>
         <h2>Vocabulario</h2>
         <p class="word">House - <span id="translation" class="hidden">Casa</span></p>
-        <button onclick="showTranslation()">Mostrar Traducción</button>
+        <button id="translateButton">Mostrar Traducción</button>
         
         <h2>Frases Comunes</h2>
         <p>Good morning - Buenos días</p>
@@ -28,31 +28,27 @@
         <h2>Ejercicio</h2>
         <p>¿Cómo se dice 'Perro' en inglés?</p>
         <input type="text" id="answer" placeholder="Escribe aquí">
-        <button onclick="checkAnswer()">Comprobar</button>
+        <button id="checkButton">Comprobar</button>
         <p id="result"></p>
     </div>
     
     <script>
-        function showTranslation() {
-            let translation = document.getElementById('translation');
-            if (translation.classList.contains('hidden')) {
-                translation.classList.remove('hidden');
-            } else {
-                translation.classList.add('hidden');
-            }
-        }
+        document.getElementById("translateButton").addEventListener("click", function() {
+            let translation = document.getElementById("translation");
+            translation.style.display = (translation.style.display === "none" || translation.style.display === "") ? "inline" : "none";
+        });
         
-        function checkAnswer() {
-            let answer = document.getElementById('answer').value.trim().toLowerCase();
-            let result = document.getElementById('result');
-            if (answer === 'dog') {
-                result.textContent = '¡Correcto!';
-                result.style.color = 'green';
+        document.getElementById("checkButton").addEventListener("click", function() {
+            let answer = document.getElementById("answer").value.trim().toLowerCase();
+            let result = document.getElementById("result");
+            if (answer === "dog") {
+                result.textContent = "¡Correcto!";
+                result.style.color = "green";
             } else {
-                result.textContent = 'Intenta de nuevo';
-                result.style.color = 'red';
+                result.textContent = "Intenta de nuevo";
+                result.style.color = "red";
             }
-        }
+        });
     </script>
 </body>
 </html>
