@@ -9,14 +9,15 @@
         .container { max-width: 600px; margin: auto; }
         .word { font-size: 24px; font-weight: bold; }
         .hidden { display: none; }
-        button { margin: 10px; padding: 10px; }
+        button { margin: 10px; padding: 10px; cursor: pointer; }
+        input { padding: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Aprende Inglés</h1>
         <h2>Vocabulario</h2>
-        <p class="word" id="word">House - <span class="hidden" id="translation">Casa</span></p>
+        <p class="word">House - <span id="translation" class="hidden">Casa</span></p>
         <button onclick="showTranslation()">Mostrar Traducción</button>
         
         <h2>Frases Comunes</h2>
@@ -26,18 +27,23 @@
         
         <h2>Ejercicio</h2>
         <p>¿Cómo se dice 'Perro' en inglés?</p>
-        <input type="text" id="answer">
+        <input type="text" id="answer" placeholder="Escribe aquí">
         <button onclick="checkAnswer()">Comprobar</button>
         <p id="result"></p>
     </div>
     
     <script>
         function showTranslation() {
-            document.getElementById('translation').classList.toggle('hidden');
+            let translation = document.getElementById('translation');
+            if (translation.classList.contains('hidden')) {
+                translation.classList.remove('hidden');
+            } else {
+                translation.classList.add('hidden');
+            }
         }
         
         function checkAnswer() {
-            let answer = document.getElementById('answer').value.toLowerCase();
+            let answer = document.getElementById('answer').value.trim().toLowerCase();
             let result = document.getElementById('result');
             if (answer === 'dog') {
                 result.textContent = '¡Correcto!';
